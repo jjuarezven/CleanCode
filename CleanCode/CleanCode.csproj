@@ -54,6 +54,7 @@
     <Compile Include="Classes\Calculators\NotRegisteredDiscountCalculator.cs" />
     <Compile Include="Classes\Calculators\SimpleCustomerDiscountCalculator.cs" />
     <Compile Include="Classes\Calculators\ValuableCustomerDiscountCalculator.cs" />
+    <Compile Include="Classes\Factories\DictionarableLazyAccountDiscountCalculatorFactory.cs" />
     <Compile Include="Interfaces\IAccountDiscountCalculator.cs" />
     <Compile Include="Interfaces\IAccountDiscountCalculatorFactory.cs" />
     <Compile Include="Classes\PriceExtensions.cs" />

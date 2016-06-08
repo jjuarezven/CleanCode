@@ -15,15 +15,33 @@ namespace CleanCode
 			//var dc = new DiscountManager(new DefaultAccountDiscountCalculatorFactory(), new DefaultLoyaltyDiscountCalculator());
 
 
-			var discountsDictionary = new Dictionary<AccountStatus, IAccountDiscountCalculator>
-			{
-				{AccountStatus.NotRegistered, new NotRegisteredDiscountCalculator()},
-				{AccountStatus.SimpleCustomer, new SimpleCustomerDiscountCalculator()},
-				{AccountStatus.ValuableCustomer, new ValuableCustomerDiscountCalculator()},
-				{AccountStatus.MostValuableCustomer, new MostValuableCustomerDiscountCalculator()}
-			};
+			#region configuracion para factory con diccionario
+			//var discountsDictionary = new Dictionary<AccountStatus, IAccountDiscountCalculator>
+			//{
+			//	{AccountStatus.NotRegistered, new NotRegisteredDiscountCalculator()},
+			//	{AccountStatus.SimpleCustomer, new SimpleCustomerDiscountCalculator()},
+			//	{AccountStatus.ValuableCustomer, new ValuableCustomerDiscountCalculator()},
+			//	{AccountStatus.MostValuableCustomer, new MostValuableCustomerDiscountCalculator()}
+			//};
 
-			var dc = new DiscountManager(new DictionarableAccountDiscountCalculatorFactory(discountsDictionary), new DefaultLoyaltyDiscountCalculator());
+			//var dc = new DiscountManager(new DictionarableAccountDiscountCalculatorFactory(discountsDictionary), new DefaultLoyaltyDiscountCalculator());
+			#endregion
+
+			/*
+			 We are using a constructor of the Lazy class which takes a Func delegate as a parameter. When we will try to access the Value property of stored in our dictionary value (Lazy type) 
+			 for the first time, this delegate will be executed and a concrete calculator implementation will be created.
+			 Now the concrete calculator implementation will be created after the first request for it will be executed. Each next call for the same implementation will return 
+			 the same (created while the first call) object.
+			 */
+
+			var lazyDiscountsDictionary = new Dictionary<AccountStatus, Lazy<IAccountDiscountCalculator>>
+			{
+				{AccountStatus.NotRegistered, new Lazy<IAccountDiscountCalculator>(() => new NotRegisteredDiscountCalculator()) },
+				{AccountStatus.SimpleCustomer, new Lazy<IAccountDiscountCalculator>(() => new SimpleCustomerDiscountCalculator())},
+				{AccountStatus.ValuableCustomer, new Lazy<IAccountDiscountCalculator>(() => new ValuableCustomerDiscountCalculator())},
+				{AccountStatus.MostValuableCustomer, new Lazy<IAccountDiscountCalculator>(() => new MostValuableCustomerDiscountCalculator())}
+			};
+			var dc = new DiscountManager(new DictionarableLazyAccountDiscountCalculatorFactory(lazyDiscountsDictionary), new DefaultLoyaltyDiscountCalculator());
 
 
 			Action<DiscountManager, AccountStatus> perform = PerformCalculation;
