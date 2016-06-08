@@ -44,10 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountStatus.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="DiscountManager.cs" />
-    <Compile Include="PriceExtensions.cs" />
+    <Compile Include="Classes\AccountStatus.cs" />
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\DefaultAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Classes\DefaultLoyaltyDiscountCalculator.cs" />
+    <Compile Include="Classes\DiscountManager.cs" />
+    <Compile Include="Classes\MostValuableCustomerDiscountCalculator.cs" />
+    <Compile Include="Classes\NotRegisteredDiscountCalculator.cs" />
+    <Compile Include="Classes\SimpleCustomerDiscountCalculator.cs" />
+    <Compile Include="Classes\ValuableCustomerDiscountCalculator.cs" />
+    <Compile Include="Interfaces\IAccountDiscountCalculator.cs" />
+    <Compile Include="Interfaces\IAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Classes\PriceExtensions.cs" />
+    <Compile Include="Interfaces\ILoyaltyDiscountCalculator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

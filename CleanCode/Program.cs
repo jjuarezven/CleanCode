@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿using CleanCode.Classes;
+using System;
 
 namespace CleanCode
 {
@@ -7,7 +7,8 @@ namespace CleanCode
 	{
 		static void Main(string[] args)
 		{
-			var dc = new DiscountManager();
+			//var dc = new DiscountManager();
+			var dc = new DiscountManager(new DefaultAccountDiscountCalculatorFactory(), new DefaultLoyaltyDiscountCalculator());
 			Action<DiscountManager, AccountStatus> perform = PerformCalculation;
 
 			AccountStatus status = AccountStatus.NotRegistered;			
