@@ -1,8 +1,8 @@
-﻿using CleanCode.Classes.Calculators;
-using CleanCode.Interfaces;
+﻿using Model.Classes.Calculators;
+using Model.Interfaces;
 using System;
 
-namespace CleanCode.Classes.Factories
+namespace Model.Classes.Factories
 {
 	public class DefaultAccountDiscountCalculatorFactory : IAccountDiscountCalculatorFactory
 	{

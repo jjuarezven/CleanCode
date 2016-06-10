@@ -1,6 +1,6 @@
-﻿using CleanCode.Interfaces;
+﻿using Model.Interfaces;
 
-namespace CleanCode.Classes
+namespace Model.Classes
 {
 	public class DiscountManager
 	{

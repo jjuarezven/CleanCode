@@ -1,9 +1,13 @@
-﻿using CleanCode.Classes;
-using CleanCode.Classes.Calculators;
-using CleanCode.Classes.Factories;
-using CleanCode.Interfaces;
+﻿using DataBaseConfiguration;
+using Model;
+using Model.Classes;
+using Model.Classes.Calculators;
+using Model.Classes.Factories;
+using Model.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace CleanCode
 {
@@ -11,6 +15,19 @@ namespace CleanCode
 	{
 		static void Main(string[] args)
 		{
+			var path = Directory.GetCurrentDirectory();
+			path = Path.GetFullPath(Path.Combine(path, @"..\..\") + "App_Data");
+			AppDomain.CurrentDomain.SetData("DataDirectory", path);
+			using (var ctx = new CleanCodeContext())
+			{
+				DiscountCalculatorConfigurationItem stud = new DiscountCalculatorConfigurationItem() { AccountStatus = AccountStatus.MostValuableCustomer, Implementation = "Model.Classes.Calculators.MostValuableCustomer, Model" };
+
+				ctx.DiscountCalculatorConfigurationItems.Add(stud);
+
+				ctx.SaveChanges();
+				var x = ctx.DiscountCalculatorConfigurationItems.ToList();
+			}
+
 			//var dc = new DiscountManager();
 			//var dc = new DiscountManager(new DefaultAccountDiscountCalculatorFactory(), new DefaultLoyaltyDiscountCalculator());
 
@@ -33,6 +50,7 @@ namespace CleanCode
 			 Now the concrete calculator implementation will be created after the first request for it will be executed. Each next call for the same implementation will return 
 			 the same (created while the first call) object.
 			 */
+
 
 			var lazyDiscountsDictionary = new Dictionary<AccountStatus, Lazy<IAccountDiscountCalculator>>
 			{

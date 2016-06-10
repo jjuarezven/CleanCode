@@ -1,8 +1,8 @@
-﻿using CleanCode.Interfaces;
+﻿using Model.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace CleanCode.Classes.Factories
+namespace Model.Classes.Factories
 {
 	public class DictionarableAccountDiscountCalculatorFactory : IAccountDiscountCalculatorFactory
 	{

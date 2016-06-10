@@ -1,4 +1,4 @@
-﻿namespace CleanCode.Classes
+﻿namespace Model.Classes
 {
 	public static class Constants
 	{

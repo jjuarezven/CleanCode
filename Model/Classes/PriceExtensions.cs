@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace CleanCode.Classes
+namespace Model.Classes
 {
 	public static class PriceExtensions
 	{

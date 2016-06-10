@@ -1,6 +1,6 @@
-﻿using CleanCode.Interfaces;
+﻿using Model.Interfaces;
 
-namespace CleanCode.Classes.Calculators
+namespace Model.Classes.Calculators
 {
 	public class NotRegisteredDiscountCalculator : IAccountDiscountCalculator
 	{

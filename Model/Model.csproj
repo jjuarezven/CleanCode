@@ -4,18 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7FB6699-D3F1-4E77-81D3-9ADCE0C8FB07}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{D0FB3DCB-D47E-4705-84F3-FFFA5B0241F2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CleanCode</RootNamespace>
-    <AssemblyName>CleanCode</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,16 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,25 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AccountStatus.cs" />
+    <Compile Include="Classes\Calculators\DefaultLoyaltyDiscountCalculator.cs" />
+    <Compile Include="Classes\Calculators\MostValuableCustomerDiscountCalculator.cs" />
+    <Compile Include="Classes\Calculators\NotRegisteredDiscountCalculator.cs" />
+    <Compile Include="Classes\Calculators\SimpleCustomerDiscountCalculator.cs" />
+    <Compile Include="Classes\Calculators\ValuableCustomerDiscountCalculator.cs" />
+    <Compile Include="Classes\Constants.cs" />
+    <Compile Include="Classes\DiscountManager.cs" />
+    <Compile Include="Classes\Factories\ConfigurableAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Classes\Factories\DefaultAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Classes\Factories\DictionarableAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Classes\Factories\DictionarableLazyAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Classes\PriceExtensions.cs" />
+    <Compile Include="Interfaces\IAccountDiscountCalculator.cs" />
+    <Compile Include="Interfaces\IAccountDiscountCalculatorFactory.cs" />
+    <Compile Include="Interfaces\ILoyaltyDiscountCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataBaseConfiguration\DataBaseConfiguration.csproj">
-      <Project>{97421f13-d129-4a14-8ebc-6fb057853150}</Project>
-      <Name>DataBaseConfiguration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{d0fb3dcb-d47e-4705-84f3-fffa5b0241f2}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

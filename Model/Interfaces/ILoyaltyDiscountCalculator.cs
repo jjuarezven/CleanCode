@@ -1,4 +1,4 @@
-﻿namespace CleanCode.Interfaces
+﻿namespace Model.Interfaces
 {
 	public interface ILoyaltyDiscountCalculator
 	{
